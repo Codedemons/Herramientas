@@ -16,7 +16,7 @@ def listar_directorio():
 # Crear una ventana de Tkinter con resolución 640x360
 ventana = tk.Tk()
 ventana.geometry("640x360")
-ventana.title("Organizador")
+
 # Configurar el tamaño del Listbox
 ventana.rowconfigure(0, weight=1)
 ventana.columnconfigure(1, weight=1)
