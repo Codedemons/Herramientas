@@ -9,7 +9,9 @@ def listar_archivos():
         for archivo in archivos:
             ruta = os.path.join(directorio, archivo)
             if os.path.isfile(ruta):
-                lista_archivos.insert(tk.END, f"Archivo: {ruta}")
+                nombre = archivo
+                fecha_creacion = os.path.getctime(ruta)
+                lista_archivos.insert(tk.END, f"Nombre: {nombre}  |  Fecha de creación: {fecha_creacion}")
 
 # Crear una ventana de Tkinter con resolución 640x360
 ventana = tk.Tk()
@@ -21,12 +23,12 @@ ventana.rowconfigure(0, weight=1)
 ventana.rowconfigure(1, weight=1)
 ventana.columnconfigure(0, weight=1)
 
-# Crear el botón en la primera fila
-boton = tk.Button(ventana, text="Seleccionar directorio", command=listar_archivos)
-boton.grid(row=0, column=0, sticky="nsew")
+# Crear el botón en la primera fila con un tamaño más pequeño
+boton = tk.Button(ventana, text="Seleccionar", command=listar_archivos, width=10)
+boton.grid(row=0, column=0, sticky="nsew", padx=20, pady=20)
 
 # Crear el Listbox en la segunda fila
-lista_archivos = tk.Listbox(ventana)
+lista_archivos = tk.Listbox(ventana, width=80)
 lista_archivos.grid(row=1, column=0, sticky="nsew")
 
 # Configurar el tamaño del Listbox para ocupar más espacio
