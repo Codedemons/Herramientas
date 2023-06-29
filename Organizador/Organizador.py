@@ -1,4 +1,5 @@
 import os
 
+nombre  = "Version"
 print("Primeras pruebas")
-os.mkdir("Hola")
+os.mkdir(nombre)
