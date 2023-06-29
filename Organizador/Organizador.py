@@ -1,5 +1,6 @@
 import os
 import tkinter as tk
+from tkinter import ttk
 from tkinter import filedialog
 from datetime import datetime
 
@@ -88,6 +89,18 @@ ventana.title("Organizador")
 icono = tk.PhotoImage(file="Organizador/lista.png")
 ventana.iconphoto(True,icono)
 
+# Create a style using the ttk module
+style = ttk.Style(ventana)
+
+# Set a theme for the style (optional)
+style.theme_use("clam")
+
+# Configure the style for buttons
+style.configure("TButton", font=("Arial", 12), padding=10)
+
+# Configure the style for labels
+style.configure("TLabel", font=("Arial", 14, "bold"), padding=10)
+
 # Configurar el tamaño de las filas y columnas
 ventana.rowconfigure(0, weight=1)
 ventana.columnconfigure(0, weight=1)
@@ -101,11 +114,11 @@ lista_archivos.rowconfigure(0, weight=1)
 lista_archivos.columnconfigure(0, weight=1)
 
 # Crear el botón "Seleccionar" en la segunda fila
-boton_seleccionar = tk.Button(ventana, text="Seleccionar", command=listar_archivos)
+boton_seleccionar = ttk.Button(ventana, text="Seleccionar", style="TButton",command=listar_archivos)
 boton_seleccionar.grid(row=1, column=1, sticky="nsew", padx=10, pady=10)
 
 # Crear el botón "Crear Carpetas" en la tercera fila
-boton_crear_carpetas = tk.Button(ventana, text="Crear Carpetas", command=crear_carpetas)
+boton_crear_carpetas = ttk.Button(ventana, text="Crear Carpetas", style="TButton",command=crear_carpetas)
 boton_crear_carpetas.grid(row=2, column=1, sticky="nsew", padx=10, pady=10)
 
 # Ejecutar el bucle principal de la ventana
