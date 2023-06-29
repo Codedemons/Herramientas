@@ -17,17 +17,22 @@ def listar_directorio():
 ventana = tk.Tk()
 ventana.geometry("640x360")
 ventana.title("Organizador")
-# Configurar el tamaño del Listbox
+
+# Configurar el tamaño de las filas y columnas
 ventana.rowconfigure(0, weight=1)
+ventana.rowconfigure(1, weight=1)
+ventana.rowconfigure(2, weight=1)
+ventana.rowconfigure(3, weight=1)
+ventana.columnconfigure(0, weight=1)
 ventana.columnconfigure(1, weight=1)
 
-# Crear el botón en la columna 0
+# Crear el botón en la primera columna y abarcar 2 filas en posición vertical
 boton = tk.Button(ventana, text="Seleccionar directorio", command=listar_directorio)
-boton.grid(row=0, column=0, sticky="nsew")
+boton.grid(row=1, column=0, rowspan=2, sticky="nsew")
 
-# Crear el Listbox en la columna 1
+# Crear el Listbox en la segunda columna
 lista_directorios = tk.Listbox(ventana)
-lista_directorios.grid(row=0, column=1, sticky="nsew")
+lista_directorios.grid(row=1, column=1, rowspan=2, sticky="nsew")
 
 # Configurar el tamaño del Listbox para ocupar más espacio
 lista_directorios.rowconfigure(0, weight=1)
