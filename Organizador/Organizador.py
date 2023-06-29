@@ -1,6 +1,7 @@
 import os
 import tkinter as tk
 from tkinter import filedialog
+from datetime import datetime
 
 def listar_archivos():
     directorio = filedialog.askdirectory()
@@ -11,7 +12,10 @@ def listar_archivos():
             if os.path.isfile(ruta):
                 nombre = archivo
                 fecha_creacion = os.path.getctime(ruta)
-                lista_archivos.insert(tk.END, f"Nombre: {nombre}  |  Fecha de creación: {fecha_creacion}")
+                fecha_formateada = datetime.fromtimestamp(fecha_creacion).strftime("%d-%m-%y")
+                lista_archivos.insert(tk.END, f"Nombre: {nombre}  |  Fecha de creación: {fecha_formateada}")
+
+
 
 # Crear una ventana de Tkinter con resolución 640x360
 ventana = tk.Tk()
