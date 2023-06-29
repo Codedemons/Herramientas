@@ -31,6 +31,7 @@ def obtener_archivos(directorio):
                 })
     return archivos
 
+
 def crear_carpetas():
     global directorio_seleccionado
     if directorio_seleccionado:
@@ -46,16 +47,46 @@ def crear_carpetas():
         if not os.path.exists(carpeta_procesamiento):
             os.mkdir(carpeta_procesamiento)
 
-        # Crear las subcarpetas para las fechas únicas
         for fecha in fechas:
             carpeta_fecha = os.path.join(carpeta_procesamiento, fecha)
             if not os.path.exists(carpeta_fecha):
                 os.mkdir(carpeta_fecha)
 
+            # Crear las subcarpetas "Imagenes", "Videos" y "Otros" dentro de la carpeta de fecha
+            carpeta_imagenes = os.path.join(carpeta_fecha, "Imagenes")
+            carpeta_videos = os.path.join(carpeta_fecha, "Videos")
+            carpeta_otros = os.path.join(carpeta_fecha, "Otros")
+            os.mkdir(carpeta_imagenes)
+            os.mkdir(carpeta_videos)
+            os.mkdir(carpeta_otros)
+
+        # Mover los archivos a las carpetas correspondientes
+        for archivo in archivos:
+            ruta = archivo['ruta']
+            nombre = archivo['nombre']
+            fecha_creacion = archivo['fecha_creacion']
+            fecha_formateada = datetime.fromtimestamp(fecha_creacion).strftime("%d-%m-%y")
+            carpeta_destino = os.path.join(carpeta_procesamiento, fecha_formateada)
+            extension = os.path.splitext(nombre)[1][1:].lower()
+            if extension in ["jpg", "png", "gif"]:
+                carpeta_destino = os.path.join(carpeta_destino, "Imagenes")
+            elif extension in ["mp4", "avi", "mkv"]:
+                carpeta_destino = os.path.join(carpeta_destino, "Videos")
+            else:
+                carpeta_destino = os.path.join(carpeta_destino, "Otros")
+            ruta_destino = os.path.join(carpeta_destino, nombre)
+            os.rename(ruta, ruta_destino)
+
+        lista_archivos.delete(0, tk.END)  # Limpiar la lista de archivos
+        lista_archivos.insert(tk.END, "Archivos movidos correctamente.")
+
 # Crear una ventana de Tkinter con resolución 640x360
 ventana = tk.Tk()
 ventana.geometry("640x360")
 ventana.title("Organizador")
+#Canbia el icono de la ventana
+icono = tk.PhotoImage(file="Organizador/lista.png")
+ventana.iconphoto(True,icono)
 
 # Configurar el tamaño de las filas y columnas
 ventana.rowconfigure(0, weight=1)
