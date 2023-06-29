@@ -63,19 +63,19 @@ ventana.columnconfigure(0, weight=1)
 
 # Crear el Listbox en la primera fila
 lista_archivos = tk.Listbox(ventana, width=80)
-lista_archivos.grid(row=0, column=0, sticky="nsew")
+lista_archivos.grid(row=0, column=0, rowspan=4, sticky="nsew")
 
 # Configurar el tamaño del Listbox para ocupar más espacio
 lista_archivos.rowconfigure(0, weight=1)
 lista_archivos.columnconfigure(0, weight=1)
 
-# Crear el botón "Seleccionar" en la segunda fila y que ocupe la mitad del espacio del Listbox
+# Crear el botón "Seleccionar" en la segunda fila
 boton_seleccionar = tk.Button(ventana, text="Seleccionar", command=listar_archivos)
-boton_seleccionar.grid(row=1, column=0, sticky="nsew", padx=10, pady=10, ipady=30)
+boton_seleccionar.grid(row=1, column=1, sticky="nsew", padx=10, pady=10)
 
-# Crear el botón "Crear Carpetas" en la tercera fila y que ocupe la mitad del espacio del Listbox
+# Crear el botón "Crear Carpetas" en la tercera fila
 boton_crear_carpetas = tk.Button(ventana, text="Crear Carpetas", command=crear_carpetas)
-boton_crear_carpetas.grid(row=2, column=0, sticky="nsew", padx=10, pady=10, ipady=30)
+boton_crear_carpetas.grid(row=2, column=1, sticky="nsew", padx=10, pady=10)
 
 # Ejecutar el bucle principal de la ventana
 ventana.mainloop()
