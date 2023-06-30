@@ -106,7 +106,9 @@ ventana.rowconfigure(0, weight=1)
 ventana.columnconfigure(0, weight=1)
 
 # Crear el Listbox en la primera fila
-lista_archivos = tk.Listbox(ventana, width=80)
+lista_archivos = tk.Listbox(ventana, font=("Arial", 10), bg=style.lookup("TFrame", "background"),
+                     fg=style.lookup("TFrame", "foreground"), selectbackground="gray",
+                     selectforeground="white", relief="flat")
 lista_archivos.grid(row=0, column=0, rowspan=4, sticky="nsew")
 
 # Configurar el tamaño del Listbox para ocupar más espacio

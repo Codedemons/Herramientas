@@ -1,35 +1,24 @@
 import tkinter as tk
 from tkinter import ttk
+from ttkthemes import ThemedStyle
 
-# Create a Tkinter window
+# Crear una ventana de Tkinter
 ventana = tk.Tk()
-ventana.title("Mejor Presentación")
+ventana.title("Estilo Clam para Listbox")
 
-# Create a style using the ttk module
-style = ttk.Style(ventana)
+# Crear un estilo personalizado utilizando ttkthemes
+style = ThemedStyle(ventana)
+style.set_theme("clam")  # Seleccionar el tema "clam"
 
-# Set a theme for the style (optional)
-style.theme_use("clam")
+# Crear un Listbox con estilo
+listbox = tk.Listbox(ventana, font=("Arial", 12), bg=style.lookup("TFrame", "background"),
+                     fg=style.lookup("TFrame", "foreground"), selectbackground="gray",
+                     selectforeground="white", relief="flat")
+listbox.pack()
 
-# Configure the style for buttons
-style.configure("TButton", font=("Arial", 12), padding=10)
+# Agregar elementos al Listbox
+for i in range(1, 6):
+    listbox.insert(tk.END, f"Elemento {i}")
 
-# Configure the style for labels
-style.configure("TLabel", font=("Arial", 14, "bold"), padding=10)
-
-# Create labels with style
-etiqueta_titulo = ttk.Label(ventana, text="Bienvenido", style="TLabel")
-etiqueta_titulo.grid(row=0, column=0)
-
-etiqueta_descripcion = ttk.Label(ventana, text="Esto es un ejemplo de mejor presentación", style="TLabel")
-etiqueta_descripcion.grid(row=1, column=0)
-
-# Create buttons with style
-boton_1 = ttk.Button(ventana, text="Botón 1", style="TButton")
-boton_1.grid(row=2, column=0, pady=10)
-
-boton_2 = ttk.Button(ventana, text="Botón 2", style="TButton")
-boton_2.grid(row=3, column=0, pady=10)
-
-# Run the main event loop
+# Ejecutar el bucle principal de la ventana
 ventana.mainloop()
