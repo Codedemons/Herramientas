@@ -1,4 +1,3 @@
-
 import os
 import tkinter as tk
 from tkinter import ttk
@@ -15,9 +14,9 @@ def listar_archivos():
         for archivo in archivos:
             ruta = archivo['ruta']
             nombre = archivo['nombre']
-            fecha_creacion = archivo['fecha_creacion']
-            fecha_formateada = datetime.fromtimestamp(fecha_creacion).strftime("%d-%m-%y")
-            lista_archivos.insert(tk.END, f"Nombre: {nombre}  |  Fecha de creación: {fecha_formateada}")
+            fecha_modificacion = archivo['fecha_modificacion']
+            fecha_formateada = fecha_modificacion.strftime("%d-%m-%y")
+            lista_archivos.insert(tk.END, f"Nombre: {nombre}  |  Fecha de modificación: {fecha_formateada}")
 
 def obtener_archivos(directorio):
     archivos = []
@@ -25,11 +24,11 @@ def obtener_archivos(directorio):
         for archivo in archivos_en_carpeta:
             ruta_completa = os.path.join(ruta_padre, archivo)
             if os.path.isfile(ruta_completa):
-                fecha_creacion = os.path.getctime(ruta_completa)
+                fecha_modificacion = datetime.fromtimestamp(os.path.getmtime(ruta_completa))
                 archivos.append({
                     'ruta': ruta_completa,
                     'nombre': archivo,
-                    'fecha_creacion': fecha_creacion
+                    'fecha_modificacion': fecha_modificacion
                 })
     return archivos
 
@@ -40,8 +39,8 @@ def crear_carpetas():
         archivos = obtener_archivos(directorio_seleccionado)
         fechas = set()  # Conjunto para almacenar las fechas únicas
         for archivo in archivos:
-            fecha_creacion = archivo['fecha_creacion']
-            fecha_formateada = datetime.fromtimestamp(fecha_creacion).strftime("%d-%m-%y")
+            fecha_modificacion = archivo['fecha_modificacion']
+            fecha_formateada = fecha_modificacion.strftime("%d-%m-%y")
             fechas.add(fecha_formateada)
 
         # Crear la carpeta "procesamiento" si no existe
@@ -66,11 +65,11 @@ def crear_carpetas():
         for archivo in archivos:
             ruta = archivo['ruta']
             nombre = archivo['nombre']
-            fecha_creacion = archivo['fecha_creacion']
-            fecha_formateada = datetime.fromtimestamp(fecha_creacion).strftime("%d-%m-%y")
+            fecha_modificacion = archivo['fecha_modificacion']
+            fecha_formateada = fecha_modificacion.strftime("%d-%m-%y")
             carpeta_destino = os.path.join(carpeta_procesamiento, fecha_formateada)
             extension = os.path.splitext(nombre)[1][1:].lower()
-            if extension in ["jpg", "png", "gif"]:
+            if extension in ["jpg", "jpeg", "png", "gif"]:
                 carpeta_destino = os.path.join(carpeta_destino, "Imagenes")
             elif extension in ["mp4", "avi", "mkv"]:
                 carpeta_destino = os.path.join(carpeta_destino, "Videos")
@@ -126,3 +125,4 @@ boton_crear_carpetas.grid(row=2, column=1, sticky="nsew", padx=10, pady=10)
 
 # Ejecutar el bucle principal de la ventana
 ventana.mainloop()
+
