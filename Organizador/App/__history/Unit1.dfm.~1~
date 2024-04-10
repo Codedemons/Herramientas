@@ -1,0 +1,32 @@
+object FrmPrincipal: TFrmPrincipal
+  Left = 0
+  Top = 0
+  Align = alClient
+  BorderIcons = []
+  BorderStyle = bsNone
+  ClientHeight = 480
+  ClientWidth = 640
+  Color = cl3DLight
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object PnlTitulo: TPanel
+    Left = 0
+    Top = 0
+    Width = 640
+    Height = 50
+    Align = alTop
+    DockSite = True
+    TabOrder = 0
+    object Img: TImage
+      Left = 1
+      Top = 1
+      Width = 80
+      Height = 48
+      Align = alLeft
+    end
+  end
+end

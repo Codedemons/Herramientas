@@ -86,8 +86,8 @@ ventana = tk.Tk()
 ventana.geometry("640x360")
 ventana.title("Organizador")
 #Canbia el icono de la ventana
-icono = tk.PhotoImage(file="Organizador/lista.png")
-ventana.iconphoto(True,icono)
+#icono = tk.PhotoImage(file="../lista.png")
+#ventana.iconphoto(True,icono)
 
 # Create a style using the ttk module
 style = ttk.Style(ventana)
